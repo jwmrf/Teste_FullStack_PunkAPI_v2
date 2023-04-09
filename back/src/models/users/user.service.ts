@@ -3,6 +3,8 @@ import { UserEntity } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { InsertResult, Repository } from 'typeorm';
 import { User } from './user.dto';
+import {hashSync} from 'bcrypt';
+const saltRounds = 10;
 
 @Injectable()
 export class UserService {
@@ -13,9 +15,8 @@ export class UserService {
   }
 
   async create(data: User): Promise<InsertResult> {
-     //this.userRepository.create(data)
+    data.password = await hashSync(data.password, saltRounds);
     let created = await this.userRepository.insert(data)
-    console.log(created)
     return created
   }
 

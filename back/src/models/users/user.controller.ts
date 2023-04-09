@@ -23,8 +23,7 @@ export class UserController {
   @Post()
   @ApiResponse({ status: 403, description: 'Forbidden.' })
   async create(@Body() userDto: User): Promise<InsertResult> {
-    console.log(userDto)
-    return this.userService.create(userDto)
+    return await this.userService.create(userDto)
   }
 
 }
