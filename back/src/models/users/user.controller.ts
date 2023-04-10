@@ -1,29 +1,38 @@
-import { Controller, Get, Post, Body } from '@nestjs/common';
+import { Controller, Get, Post, Body, HttpCode ,HttpStatus } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserEntity } from './user.entity';
-import { User } from './user.dto';
-import {
-    ApiBearerAuth,
-    ApiOperation,
-    ApiResponse,
-    ApiTags,
-  } from '@nestjs/swagger';
+import { User } from './dto/user.dto';
+import { Login } from './dto/login.dto';
+import { ApiBearerAuth, ApiResponse, ApiTags} from '@nestjs/swagger';
 import { InsertResult } from 'typeorm';
+import { Public } from './decorators/public.decorator';
 
 @Controller('user')
 @ApiTags('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
-
-  @Get()
-  async index(): Promise<UserEntity[]> {
-    return this.userService.findAll();
-  }
+  constructor(
+    private readonly userService: UserService
+  ) {}
   
+  @ApiBearerAuth()
+  @Get()
+  async getAll(): Promise<UserEntity[]> {
+    return this.userService.find();
+  }
+
+  @Public()
   @Post()
   @ApiResponse({ status: 403, description: 'Forbidden.' })
-  async create(@Body() userDto: User): Promise<InsertResult> {
+  async register(@Body() userDto: User): Promise<InsertResult> {
     return await this.userService.create(userDto)
+  }
+  
+  @Public()
+  @HttpCode(HttpStatus.OK)
+  @Post('/login')
+  @ApiResponse({ status: 403, description: 'Forbidden.' })
+  async login(@Body() loginDto: Login): Promise<any> {
+    return this.userService.signIn(loginDto.email, loginDto.password);
   }
 
 }
