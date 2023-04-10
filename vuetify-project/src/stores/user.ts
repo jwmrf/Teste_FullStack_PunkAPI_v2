@@ -17,7 +17,7 @@ export const useUserStore = defineStore({
   state: () => {
     return {
         name: '',
-        isAdmin: true,
+        isAdmin: false,
         token: ''
     }
   },
