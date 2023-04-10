@@ -6,8 +6,4 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class AppService {
   constructor(@InjectRepository(UserEntity) private userRepository: Repository<UserEntity>) {}
-  
-  getHello(): string {
-    return 'Hello World!';
-  }
 }
