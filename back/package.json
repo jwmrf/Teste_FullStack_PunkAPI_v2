@@ -8,6 +8,8 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "front": "npm run dev --prefix ./../vuetify-project",
+    "app": "concurrently \"npm run start\" \"npm run front\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -29,6 +31,8 @@
     "@types/bcrypt": "^5.0.0",
     "bcrypt": "^5.1.0",
     "class-validator": "^0.14.0",
+    "concurrently": "^8.0.1",
+    "cors": "^2.8.5",
     "pg": "^8.10.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
