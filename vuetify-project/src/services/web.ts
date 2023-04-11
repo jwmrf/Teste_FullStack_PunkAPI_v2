@@ -18,6 +18,10 @@ export default class Webservices {
         return await axios.post(this.getUrl(), { email: email, password: password})
     }
 
+    async register(name: string, email: string, password: string) {
+      return await axios.post(this.getUrl(), { name: name, email: email, password: password})
+  }
+
     async getUsers() {
       return await axios.get(this.getUrl())
     }

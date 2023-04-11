@@ -12,6 +12,15 @@ async function apiLogin(a: string, p: string) {
   return result.data.access_token
 }
 
+async function apiRegister(name: string, email: string, password: string) {
+  ws.resource = 'user'
+  let result = await ws.register(name, email, password)
+  if (!result?.data) {
+    return Promise.reject(new Error('invalid credentials'))
+  }
+  return result.data
+}
+
 export const useUserStore = defineStore({
     id:'user',
   state: () => {
@@ -35,7 +44,6 @@ export const useUserStore = defineStore({
 
     },
     async login(user: string, password: string) {
-      
       const userData = await apiLogin(user, password)
       ws.setToken(userData)
       this.$patch({
@@ -44,6 +52,16 @@ export const useUserStore = defineStore({
         token: userData
       })
     },
+    async register(name: string, user: string, password: string) {
+      const userData = await apiRegister(name, user, password)
+      ws.setToken(userData)
+      this.$patch({
+        name: user,
+        isAdmin: true,
+        token: userData
+      })
+    },
+
 
     async testAuth() {
       ws.resource = 'user'
