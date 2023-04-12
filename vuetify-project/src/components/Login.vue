@@ -9,7 +9,7 @@
       </v-card>
     </v-dialog>
     <v-responsive class="d-flex align-center text-center fill-height">
-      <v-flex>
+
         <v-card v-if="!register" v-bind="{ loading: loading == true }" class="elevation-4">
           <div class="bottle-face">
             <v-img contain height="300" src="@/assets/garupa.svg" />
@@ -87,7 +87,6 @@
             >
           </v-card-actions>
         </v-card>
-      </v-flex>
     </v-responsive>
   </v-container>
 </template>

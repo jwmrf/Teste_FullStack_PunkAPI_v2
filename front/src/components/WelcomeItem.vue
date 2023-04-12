@@ -62,7 +62,6 @@ h3 {
     border-left: 1px solid var(--color-border);
     position: absolute;
     left: 0;
-    bottom: calc(50% + 25px);
     height: calc(50% - 25px);
   }
 

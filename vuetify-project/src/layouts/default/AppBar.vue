@@ -5,12 +5,12 @@
             <v-img contain height="30" src="@/assets/garupa.svg" />
       </div>
       <div>
-        &nbsp; Teste Garupa App
+        &nbsp;&nbsp; Teste Garupa App
       </div>
     </v-app-bar-title>
     <v-menu v-if="user.token" :close-on-content-click="false" location="end">
       <template v-slot:activator="{ props }">
-        <v-btn color="indigo" v-bind="props"> User </v-btn>
+        <v-btn color="indigo" v-bind="props"> Usuário </v-btn>
       </template>
 
       <v-card min-width="300">
