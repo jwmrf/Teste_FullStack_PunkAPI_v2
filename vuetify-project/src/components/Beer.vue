@@ -1,57 +1,23 @@
-<script lang="ts">
-
-export default {
-  components: {
-  },
-  data () {
-    return {
-      dialog: false,
-      dialogMessage: ''
-    }
-  },
-  methods: {
-    getBeerName() {
-      return this.beer.name.substr(0,25)
-    }
-  },
-  props: ['tag','beerId','beer']
-}
-</script>
-
 <template>
   <div class="container v-col-lg-1">
     <v-dialog v-model="dialog" width="auto">
       <v-card>
         <h3>&nbsp;{{ beer.name }}</h3>
         <div>
-          <v-chip
-            class="ma-2"
-            label
-          >
-            Ibu: {{ beer.ibu }}
-          </v-chip>
-          <v-chip
-            class="ma-2"
-            color="pink"
-            label
-            text-color="white"
-          >
+          <v-chip class="ma-2" label> Ibu: {{ beer.ibu }} </v-chip>
+          <v-chip class="ma-2" color="pink" label text-color="white">
             Graduação: {{ beer.abv }}
           </v-chip>
-          <v-chip
-            class="ma-2"
-            color="primary"
-            label
-          >
+          <v-chip class="ma-2" color="primary" label>
             Lançamento: {{ beer.first_brewed }}
           </v-chip>
         </div>
         <v-card-text>
-           {{ beer.description }}
+          {{ beer.description }}
         </v-card-text>
         <v-card-actions width="auto">
           <v-chip
-          @click="dialog = false"
+            @click="dialog = false"
             class="ma-2"
             closable
             text-color="white"
@@ -75,34 +41,52 @@ export default {
     </v-row>
   </div>
 </template>
+<script lang="ts">
+export default {
+  components: {},
+  data() {
+    return {
+      dialog: false,
+      dialogMessage: "",
+    };
+  },
+  methods: {
+    getBeerName() {
+      return this.beer.name.substr(0, 25);
+    },
+  },
+  props: ["tag", "beerId", "beer"],
+};
+</script>
+
 <style scoped>
 img {
   padding: 5px;
 }
 button {
-  background-color:#16a085
+  background-color: #16a085;
 }
 .container {
   max-width: 300px;
   min-height: 220px;
   background: var(--vt-c-white-mute);
-  border-radius: .5rem;
+  border-radius: 0.5rem;
 }
 
 .container:not(:last-of-type) {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .container .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .5rem;
+  padding: 0.5rem;
   border-bottom: 1px solid var(--vt-c-divider-dark-2);
   color: var(--vt-c-black-mute);
 }
 .header {
-  padding: .3rem;
+  padding: 0.3rem;
   background: transparent;
   border: none;
   cursor: pointer;

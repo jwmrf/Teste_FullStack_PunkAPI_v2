@@ -2,11 +2,9 @@
   <v-app-bar flat>
     <v-app-bar-title>
       <div class="bottle-face">
-            <v-img contain height="30" src="@/assets/garupa.svg" />
+        <v-img contain height="30" src="@/assets/garupa.svg" />
       </div>
-      <div>
-        &nbsp;&nbsp; Teste Garupa App
-      </div>
+      <div>&nbsp;&nbsp; Teste Garupa App</div>
     </v-app-bar-title>
     <v-menu v-if="user.token" :close-on-content-click="false" location="end">
       <template v-slot:activator="{ props }">
