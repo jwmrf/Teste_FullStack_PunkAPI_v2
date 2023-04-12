@@ -15,13 +15,13 @@ import { APP_GUARD } from '@nestjs/core';
     global: true,
     secret: jwtConstants.secret,
     signOptions: { expiresIn: '6000s' },
-  }),],
+  })],
   controllers: [UserController],
   providers: [UserService,
     {
     provide: APP_GUARD,
     useClass: AuthGuard,
-  },],
-  exports: [UserService]
+  }],
+  exports: [UserService, TypeOrmModule.forFeature([UserEntity])]
 })
 export class UserModule {}

@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, HttpCode ,HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Body, HttpCode ,HttpStatus, Param } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserEntity } from './user.entity';
 import { User } from './dto/user.dto';
