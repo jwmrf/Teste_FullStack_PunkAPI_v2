@@ -8,7 +8,7 @@
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "front": "npm run dev --prefix ./../vuetify-project",
+    "front": "npm run dev --prefix ./../front",
     "app": "concurrently \"npm run start\" \"npm run front\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
