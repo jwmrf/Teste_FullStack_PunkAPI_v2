@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { Beer } from './dto/beer.dto';
 import axios from "axios";
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
@@ -8,13 +8,15 @@ export class BeerService {
   constructor(
   ) {}
 
-  async find(request: Beer): Promise<any[]> {
-    return await (await axios.get(`https://api.punkapi.com/v2/beers?page=${request.page}&per_page=10`)).data
+  async find(request: Beer): Promise<Object> {
+    return await (await axios.get(`https://api.punkapi.com/v2/beers?page=${request.page}${ request.name ?  "&beer_name="+request.name : ''}&per_page=8`)).data
   }
-  
-  async findOne(email: string): Promise<Beer | undefined> {
-    return undefined
-    //return this.userRepository.findOne({ where: { email: email, status: true }});
+  async verify(): Promise<Boolean> {
+    return axios.get(`https://api.punkapi.com/v2/beers`).then(() => {
+      return true;
+    }).catch(() => {
+      return false;
+    });
   }
 
 }

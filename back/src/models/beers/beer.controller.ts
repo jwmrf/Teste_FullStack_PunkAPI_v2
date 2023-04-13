@@ -1,8 +1,7 @@
-import { Controller, Get, Param, ParamData, Req, Query} from '@nestjs/common';
+import { Controller, Get, Query} from '@nestjs/common';
 import { BeerService } from './beer.service';
 import { Beer } from './dto/beer.dto';
-import { ApiBearerAuth, ApiResponse, ApiTags} from '@nestjs/swagger';
-import { Public } from './../users/decorators/public.decorator';
+import { ApiTags} from '@nestjs/swagger';
 
 @Controller('beer')
 @ApiTags('beer')
@@ -12,11 +11,13 @@ export class BeerController {
   ) {}
   
   @Get()
-  @Public()
-  async getAll(@Query() request: Beer): Promise<any[]> {
-    console.log(request.page)
+  async getAll(@Query() request: Beer): Promise<Object> {
     return this.beerService.find(request);
   }
   
+  @Get('verify')
+  async verifyPunkApi(): Promise<Boolean> {
+    return await this.beerService.verify();
+  }
 
 }
