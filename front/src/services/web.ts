@@ -30,8 +30,8 @@ export default class Webservices {
       return await axios.get(this.getUrl())
     }
 
-    async getBeers(page: Number): Promise<any> {
-      return await (await axios.get(this.getUrl()+`?page=${page}`)).data
+    async getBeers(page: Number, name: String): Promise<Array<{id:number, name:string}>> {
+      return await (await axios.get(this.getUrl()+`?page=${page}&name=${name}`)).data
     }
 
 

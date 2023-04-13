@@ -1,5 +1,5 @@
 <template>
-  <div class="container v-col-lg-1">
+  <div class="container">
     <v-dialog v-model="dialog" width="auto">
       <v-card>
         <h3>&nbsp;{{ beer.name }}</h3>
@@ -55,40 +55,28 @@ export default {
       return this.beer.name.substr(0, 25);
     },
   },
-  props: ["tag", "beerId", "beer"],
+  props: ["beerId", "beer"],
 };
 </script>
 
 <style scoped>
-img {
-  padding: 5px;
-}
 button {
   background-color: #16a085;
 }
 .container {
-  max-width: 300px;
+  min-width: 250px;
+  max-width: 100%;
   min-height: 220px;
-  background: var(--vt-c-white-mute);
   border-radius: 0.5rem;
 }
-
-.container:not(:last-of-type) {
-  margin-right: 0.5rem;
-}
-
 .container .header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 0.5rem;
   border-bottom: 1px solid var(--vt-c-divider-dark-2);
   color: var(--vt-c-black-mute);
 }
-.header {
-  padding: 0.3rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
+.v-row {
+  margin: auto;
 }
 </style>

@@ -1,18 +1,31 @@
 <template>
-  <v-container class="fill-height">
-    <v-responsive
-      v-for="beer in beers"
-      :key="beer.id"
-      class="d-flex padding_lateral col-xs-12"
-    >
-      <div class="main row">
-        <div class="fullwidth">
-          <BeerVue :tag="beer.name" :beerId="beer.id" :beer="beer"> </BeerVue>
+  <v-container>
+    <v-text-field
+      label="Buscar por nome"
+      v-model="filter.search"
+    ></v-text-field>
+  </v-container>
+  <v-container>
+    <v-row>
+      <v-col
+        cols="md-3"
+        v-for="beer in beers"
+        :key="beer.id"
+        class="d-flex padding_lateral"
+      >
+        <div class="main">
+          <div class="fullwidth">
+            <BeerVue :beerId="beer.id" :beer="beer"> </BeerVue>
+          </div>
         </div>
-      </div>
-    </v-responsive>
+      </v-col>
+    </v-row>
     <v-container class="max-width">
-      <v-pagination v-model="page" :length="Math.ceil(324 / 10)"></v-pagination>
+      <v-pagination
+        @change="filter.search = ''"
+        v-model="filter.page"
+        :length="Math.ceil(324 / 8)"
+      ></v-pagination>
     </v-container>
   </v-container>
 </template>
@@ -27,26 +40,39 @@ const ws = new Webservices("beer");
 export default defineComponent({
   data() {
     return {
-      beerData: [{ id: 1, name: "Heineken" }],
-      beers: [{ id: 1, name: "Heineken" }],
-      changedTag: undefined,
+      beers:  new Array<{id:number, name:string}>(),
       user: useUserStore(),
-      page: 1,
+      filter: {
+        search: "",
+        page: 1,
+        finding: false,
+      },
     };
   },
   async mounted() {},
   watch: {
-    page: function (value) {
-      this.filterData();
+    "filter.page": {
+      handler() {
+        this.filter.search = "";
+        this.filterData();
+      },
+    },
+    "filter.search": {
+      handler() {
+        this.filterData();
+      },
     },
   },
   async created() {
-    this.beers = await ws.getBeers(this.page);
+    this.beers = await ws.getBeers(this.filter.page, this.filter.search);
   },
   components: { BeerVue },
   methods: {
     async filterData() {
-      this.beers = await ws.getBeers(this.page);
+      this.beers = await ws.getBeers(this.filter.page, this.filter.search);
+    },
+    getPage() {
+      return this.filter.page;
     },
   },
 });

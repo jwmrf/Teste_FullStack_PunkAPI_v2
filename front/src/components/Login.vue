@@ -83,6 +83,11 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
+            color="primary"
+            @click="register = false"
+            >Voltar</v-btn
+          >
+          <v-btn
             :disabled="!email || !password || !name"
             color="primary"
             @click="Register()"
@@ -110,7 +115,7 @@ export default defineComponent({
       loading: false,
       dialog: false,
       register: false,
-      dialogMessage: "",
+      dialogMessage: ""
     };
   },
   mounted() {},
