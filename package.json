@@ -5,8 +5,8 @@
   "scripts": {
     "back": "npm run start --prefix ./back",
     "front": "npm run dev --prefix ./front",
-    "install_back": "npm run start --prefix ./back",
-    "install_front": "npm run dev --prefix ./front",
+    "install_back": "npm install --prefix ./back",
+    "install_front": "npm install --prefix ./front",
     "app": "concurrently \"npm run back\" \"npm run front\"",
     "fullinstall": "concurrently \"npm run install_back\" \"npm run install_front\""
   },
