@@ -1,10 +1,10 @@
-import { Controller, Get, Post, Body, HttpCode ,HttpStatus, Param } from '@nestjs/common';
+import { Controller, Get, Patch, Post, Body, HttpCode ,HttpStatus, Delete, Query, Param } from '@nestjs/common';
 import { UserService } from './user.service';
 import { UserEntity } from './user.entity';
-import { User } from './dto/user.dto';
+import { User, UserOne, UserUpdate } from './dto/user.dto';
 import { Login } from './dto/login.dto';
 import { ApiBearerAuth, ApiResponse, ApiTags} from '@nestjs/swagger';
-import { InsertResult } from 'typeorm';
+import { DeleteResult, InsertResult, UpdateResult } from 'typeorm';
 import { Public } from './decorators/public.decorator';
 
 @Controller('user')
@@ -18,6 +18,24 @@ export class UserController {
   @Get()
   async getAll(): Promise<UserEntity[]> {
     return this.userService.find();
+  }
+
+  @ApiBearerAuth()
+  @Get(':id')
+  async getUser(@Query() request: UserOne): Promise<UserEntity> {
+    return this.userService.findOne(request.email);
+  }
+
+  @ApiBearerAuth()
+  @Patch(':id')
+  async patchUser(@Param() { email }: UserOne, @Body() post: UserUpdate): Promise<UpdateResult> {
+    return this.userService.updateOne(email, post);
+  }
+
+  @ApiBearerAuth()
+  @Delete()
+  async delete(@Query() request: UserOne): Promise<DeleteResult> {
+    return this.userService.delete(request.email);
   }
 
   @Public()

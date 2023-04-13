@@ -17,3 +17,19 @@ export class User extends BaseEntity {
   
   status?: true | false;
 }
+
+export class UserUpdate extends BaseEntity {
+  @IsString()
+  readonly name?: string;
+
+  @IsString()
+  email?: string;
+  
+  status?: true | false;
+}
+
+@Entity()
+export class UserOne extends BaseEntity {
+  @IsString()
+  email: string;
+}

@@ -1,8 +1,8 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserEntity } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { InsertResult, Repository } from 'typeorm';
-import { User } from './dto/user.dto';
+import { InsertResult, Repository, DeleteResult, UpdateResult } from 'typeorm';
+import { User, UserUpdate } from './dto/user.dto';
 import { hashSync, compareSync } from 'bcrypt';
 import { JwtService } from '@nestjs/jwt';
 const saltRounds = 10;
@@ -17,9 +17,18 @@ export class UserService {
   async find(): Promise<UserEntity[]> {
     return await this.userRepository.find({ where: { status: true }});
   }
+
+  async delete(id: string): Promise<DeleteResult> {
+    return await this.userRepository.delete({ email: id });
+  }
   
-  async findOne(email: string): Promise<User | undefined> {
-    return this.userRepository.findOne({ where: { email: email, status: true }});
+  async findOne(id: string): Promise<UserEntity> {
+    return this.userRepository.findOne({ where: { email: id, status: true }});
+  }
+
+  async updateOne(email: string, data: UserUpdate): Promise<UpdateResult> {
+    return this.userRepository.update
+    ({ email: email }, data);
   }
 
   async create(data: User): Promise<InsertResult> {
