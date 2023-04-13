@@ -29,10 +29,10 @@ Para especificar [front ou back] e #nome_da_branch, para caso estivesse numa sit
 No back optei por utilizar o framework NestJS, estou familiarizado com o Loopback, ambos são frameworks bem completos e permitem configurações totais da aplicação, porém devido a baixa manutenção do Loopback nos últimos anos, optei pelo Nest.
 
 Caminho para alterar arquivo do Postgres: Teste_FullStack_PunkAPI_v2\back\src\config\database\postgres\connect.ts
-Porta padrão: 3000
-Swagger da API: http://localhost:3000/api
-Comando de teste: npm run test (verifica se a punkapi está no ar)
-Talvez o vscode acuse a biblioteca bcrypt de não encontrada, porém é apenas um erro de leitura do vscode, o app funciona normalmente.
+- Porta padrão: 3000
+- Swagger da API: http://localhost:3000/api
+- Comando de teste: npm run test (verifica se a punkapi está no ar)
+- Talvez o vscode acuse a biblioteca bcrypt de não encontrada, porém é apenas um erro de leitura do vscode, o app funciona normalmente.
 
 Principais Bibliotecas Utilizadas:
 
