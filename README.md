@@ -58,10 +58,10 @@ Rotas:
 
 No front utilizei o framework Vue.js na sua 3º versão(mais recente) e com typescript.
 
-Porta padrão: 8000
-Arquivo de apontamento das rotas: Teste_FullStack_PunkAPI_v2\front\src\services\web.ts
-Durante o desenvolvimento me atentei ao uso em desktop como em mobile para garantir responsividade.
-É possível realizar o build da aplicação com o comando 'npm run build' e os arquivos gerados estarão na pasta /dist.
+- Porta padrão: 8000
+- Arquivo de apontamento das rotas: Teste_FullStack_PunkAPI_v2\front\src\services\web.ts
+- Durante o desenvolvimento me atentei ao uso em desktop como em mobile para garantir responsividade.
+- É possível realizar o build da aplicação com o comando 'npm run build' e os arquivos gerados estarão na pasta /dist.
 
 Principais Bibliotecas Utilizadas:
 
